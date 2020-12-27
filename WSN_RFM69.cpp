@@ -266,6 +266,7 @@ bool WSN_RFM69::fetchPacket()
 				}
 				//sendToSink();
 				tx_PHY(message.length()+1,route(),true);
+				return false;
 			}
 			pLen = len;
 			pRSSI = rssi;
