@@ -68,12 +68,8 @@ bool fetchPacket();
 
 void setNetworkMode(bool flag);
 void setSink(bool is_sink); 
-
-void discoveryREQ();
-void discoveryRESP();
-
-void calculate_hops();
-int route();
+void sendToAllNeighbours();
+bool sendToNeighbour(uint16_t to_node);
 
 void sendToSink();
 
@@ -82,6 +78,12 @@ bool tx_PHY(byte L1_length,int toNode,bool requestACK);
 protected:
 void interruptHandler();
 void interruptHook(uint8_t CTLbyte);
+
+void discoveryREQ();
+void discoveryRESP();
+
+void calculate_hops();
+int route();
     
 };
 
