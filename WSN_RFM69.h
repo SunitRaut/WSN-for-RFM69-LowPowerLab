@@ -2,20 +2,34 @@
 #define WSN_RFM69_h
 #include <RFM69.h>
 
-#define PSIZE 200
+#define PSIZE 200		//Size of packet buffer in bytes. Set this according to your hardware RAM limit and your estimated RAM usage
+// 200 bytes is optimal for Arduino Nano, Uno, etc with 2kB RAM. For ESP8266 or other controllers with more RAM, ou can increase the packet buffer size. 
+#define RETRY_TIMES 	1	// How many times to retry a transmission?
+#define RETRY_INTERVAL	50	// At what intervals to retry?
+#define NEIGHBOUR_RETRY_LIMIT 5	// How many neighbours to try in case of failure
 
 class WSN_RFM69 : public RFM69
 {
 public:
 static char pbuffer[PSIZE];
 static char rbuffer[61];
+static char sendbuffer[61];
 static byte pwrite;
 static byte pread;
 static bool pflag;
+static byte pLen;
+static int pRSSI;
+static int pSenderID;
+
 static int backoff;
 static bool sink;
 static String message;
+static int neighbours[10];
+static byte hops_count[10];                      //Array to store hop_distance of neighbouring nodes
+static int neighbourCount;                                           //Count of neighbours
+static byte hops_from_sink; 
 
+static bool networkMode;
 
 WSN_RFM69();
 
@@ -25,9 +39,20 @@ static void send_ACK(const void* buffer = "", uint8_t bufferSize=0);
 static void check();			//not in use (undefined)
 static void isr_modif();		//not in use (undefined)
 
-static void fetchPacket();
+bool fetchPacket();
+
+void setNetworkMode(bool flag);
 void setSink(bool is_sink); 
-void sendToSink();    
+
+void discoveryREQ();
+void discoveryRESP();
+
+void calculate_hops();
+int route();
+
+void sendToSink();
+
+bool tx_PHY(byte L1_length,int toNode,bool requestACK);   
 
 protected:
 void interruptHandler();
