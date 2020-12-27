@@ -53,8 +53,18 @@ node.sendToSink();
 
 In networkMode, as of now, you can send messages from the nodes to the sink. Do not try to send directly to other nodes using sendbuffer[] & send() & sendWithRetry() in networkMode.
 
+- To send to all Neighbouring Nodes:
+
+node.message = "Hello World! Neighbours";
+
+node.sendToAllNeighbours();
+
+- To send to a particular Neighbouring Node:
+
+node.message = "Hello World! Neighbour";
+
+node.sendToNeighbour(NeighbourNodeId);
 
 ## Other Features Coming Soon:
-- Broadcast a message to all neighbouring nodes (in networkMode)
 - Broadcast a message to all nodes in network (in networkMode)
-- Send packet to a particular neighbouring node (in networkMode)
+
