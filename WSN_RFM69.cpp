@@ -157,6 +157,36 @@ void WSN_RFM69::sendToSink()
 	}
 }
 
+void WSN_RFM69::sendToAllNeighbours()
+{
+	sendbuffer[0] = 4;
+	for(byte i=1;i<=message.length();i++)
+	{
+	  if(i>60) break;
+	  sendbuffer[i]=message[i-1];
+	}
+	tx_PHY(message.length()+1,0,false,false);
+		
+}
+
+bool WSN_RFM69::sendToNeighbour(uint16_t to_node)
+{
+	sendbuffer[0] = 4;
+	for(byte i=1;i<=message.length();i++)
+	{
+	  if(i>60) break;
+	  sendbuffer[i]=message[i-1];
+	}
+	if(tx_PHY(message.length()+1,to_node,true,false))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+		
+}
 
 
 bool WSN_RFM69::tx_PHY(byte L1_length,int toNode, bool requestACK)
@@ -251,7 +281,14 @@ bool WSN_RFM69::fetchPacket()
 	if (networkMode)
 		{
 		//Serial.println(char(packet_type));
-		if (packet_type==3)
+		if (packet_type==4)
+		{
+			pLen = len-1;
+			pRSSI = rssi;
+			pSenderID = SENDERID;
+			return true;
+		}
+		else if (packet_type==3)
 		{	
 			if(!sink)
 			{
