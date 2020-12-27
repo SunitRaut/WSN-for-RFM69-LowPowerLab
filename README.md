@@ -36,14 +36,22 @@ To enable simple mode: node.setNetworkMode(false);
 To enable networkMode: node.setNetworkMode(true);
 
 In Setup():
+
 node.setNetworkMode(true);
+
 Sink Node: node.setSink(true) | Node: node.setSink(false)
 
 Anywhere in your code:
+
 First assign to message
-node.message = "Hello World!";
+
+node.message = "Hello World!";      //max. 60 byte message
+
 Then send towards the nearest sink
+
 node.sendToSink();
+
+In networkMode, as of now, you can send messages from the nodes to the sink. Do not try to send directly to other nodes using sendbuffer[] & send() & sendWithRetry() in networkMode.
 
 
 ## Other Features Coming Soon:
