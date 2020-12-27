@@ -1,0 +1,20 @@
+{
+  "name": "WSN_RFM69",
+  "version": "1.0.0",
+  "keywords": "rf, radio, wireless, spi, lowpowerlab, wsn, network",
+  "description": "RFM69 library for RFM69W, RFM69HW, RFM69CW, RFM69HCW (semtech SX1231, SX1231H)",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/SunitRaut/WSN-for-RFM69-LowPowerLab"
+  },
+  "frameworks": "arduino",
+  "platforms": "atmelavr",
+  "dependencies":
+  [
+    {
+      "name": "RFM69_LowPowerLab",
+      "authors": "Felix Rusu"
+    }
+  ]
+}
