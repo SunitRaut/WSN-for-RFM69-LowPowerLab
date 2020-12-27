@@ -1,15 +1,17 @@
-WSN_RFM69	      KEYWORD2
+WSN_RFM69       KEYWORD2
 
-fetchPacket	    KEYWORD2
-setNetworkMode	KEYWORD2
-setSink		      KEYWORD2
-sendToSink	    KEYWORD2
+fetchPacket     KEYWORD2
+setNetworkMode  KEYWORD2
+setSink         KEYWORD2
+sendToSink      KEYWORD2
 
 
-pbuffer		      LITERAL2
-pflag		        LITERAL2
-pLen		        LITERAL2
-pRSSI		        LITERAL2
-pSenderID	      LITERAL2
-message		      LITERAL2
+
+
+pbuffer         LITERAL2
+pflag           LITERAL2
+pLen            LITERAL2
+pRSSI           LITERAL2
+pSenderID       LITERAL2
+message         LITERAL2
 
