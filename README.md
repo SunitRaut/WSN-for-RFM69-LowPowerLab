@@ -16,7 +16,6 @@ This is a library for developing Wireless Sensor Network using RFM69 LowPowerLab
 
 Create object of WSN_RFM69 Class.
 WSN_RFM69 node; // object node of class WSN_RFM69
-You can use all methods/functions provided by LowPowerLab plus additional methods/functions provided by our library.
 
 The library can be run in two modes: simple and networkMode
 By default simple mode is enabled.
@@ -32,7 +31,8 @@ By default simple mode is enabled.
 To enable networkMode: node.setNetworkMode(true);
 To enable simple mode: node.setNetworkMode(false);
 
-# networkMode
+## networkMode
+
 To enable networkMode: node.setNetworkMode(true);
 
 In Setup():
@@ -51,8 +51,6 @@ Then send towards the nearest sink
 
 node.sendToSink();
 
-In networkMode, as of now, you can send messages from the nodes to the sink. Do not try to send directly to other nodes using sendbuffer[] & send() & sendWithRetry() in networkMode.
-
 - To send to all Neighbouring Nodes:
 
 node.message = "Hello World! Neighbours";
@@ -65,6 +63,6 @@ node.message = "Hello World! Neighbour";
 
 node.sendToNeighbour(NeighbourNodeId);
 
-## Other Features Coming Soon:
-- Broadcast a message to all nodes in network (in networkMode)
-
+###Some Important Notes:
+- 0 is the broadcast address. Do not assign 0 as node id for any node.
+- If there are any functions / processes in your code that take a long time to execute, add node.receiveDone() between the function / process. This ensures that packets are not lost due to such lengthy processes / functions. node.receiveDone() checks for arrival of new packet and sends it to packet buffer, so that it can be processed later in the main loop. 
