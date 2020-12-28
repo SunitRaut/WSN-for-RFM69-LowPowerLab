@@ -38,7 +38,6 @@ class WSN_RFM69 : public RFM69
 public:
 static char pbuffer[PSIZE];
 static char rbuffer[61];
-static char sendbuffer[61];
 static byte pwrite;
 static byte pread;
 static bool pflag;
@@ -58,24 +57,28 @@ static bool networkMode;
 
 WSN_RFM69();
 
-void send(uint16_t toAddress, const void* buffer, uint8_t bufferSize, bool requestACK);
-bool sendWithRetry(uint16_t toAddress, const void* buffer, uint8_t bufferSize, uint8_t retries, uint8_t retryWaitTime); 
-static void send_ACK(const void* buffer = "", uint8_t bufferSize=0);
-static void check();			//not in use (undefined)
-static void isr_modif();		//not in use (undefined)
 
 bool fetchPacket();
 
 void setNetworkMode(bool flag);
 void setSink(bool is_sink); 
 void sendToAllNeighbours();
-bool sendToNeighbour(uint16_t to_node);
+bool sendToNeighbour(uint16_t to_node, bool requestACK);
 
 void sendToSink();
 
 bool tx_PHY(byte L1_length,int toNode,bool requestACK);   
 
 protected:
+
+static char sendbuffer[61];
+
+void send(uint16_t toAddress, const void* buffer, uint8_t bufferSize, bool requestACK);
+bool sendWithRetry(uint16_t toAddress, const void* buffer, uint8_t bufferSize, uint8_t retries, uint8_t retryWaitTime); 
+static void send_ACK(const void* buffer = "", uint8_t bufferSize=0);
+static void check();			//not in use (undefined)
+static void isr_modif();		//not in use (undefined)
+
 void interruptHandler();
 void interruptHook(uint8_t CTLbyte);
 

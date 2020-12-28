@@ -159,31 +159,76 @@ void WSN_RFM69::sendToSink()
 
 void WSN_RFM69::sendToAllNeighbours()
 {
-	sendbuffer[0] = 4;
-	for(byte i=1;i<=message.length();i++)
+	if (networkMode)
 	{
-	  if(i>60) break;
-	  sendbuffer[i]=message[i-1];
-	}
-	tx_PHY(message.length()+1,0,false,false);
-		
-}
-
-bool WSN_RFM69::sendToNeighbour(uint16_t to_node)
-{
-	sendbuffer[0] = 4;
-	for(byte i=1;i<=message.length();i++)
-	{
-	  if(i>60) break;
-	  sendbuffer[i]=message[i-1];
-	}
-	if(tx_PHY(message.length()+1,to_node,true,false))
-	{
-		return true;
+		sendbuffer[0] = 4;
+		for(byte i=1;i<=message.length();i++)
+		{
+			if(i>60) break;
+	  		sendbuffer[i]=message[i-1];
+		}
 	}
 	else
 	{
-		return false;
+		for(byte i=0;i<=message.length();i++)
+		{
+			if(i>61) break;
+	  		sendbuffer[i]=message[i];
+		}
+	}
+
+	byte len = 0;
+
+	if (networkMode)
+		len = message.length()+1;
+	else
+		len = message.length();
+
+	tx_PHY(len,0,false);
+		
+}
+
+bool WSN_RFM69::sendToNeighbour(uint16_t to_node, bool requestACK)
+{
+	if (networkMode)
+	{
+		sendbuffer[0] = 4;
+		for(byte i=1;i<=message.length();i++)
+		{
+			if(i>60) break;
+	  		sendbuffer[i]=message[i-1];
+		}
+	}
+	else
+	{
+		for(byte i=0;i<=message.length();i++)
+		{
+			if(i>61) break;
+	  		sendbuffer[i]=message[i];
+		}
+	}
+	
+	byte len = 0;
+
+	if (networkMode)
+		len = message.length()+1;
+	else
+		len = message.length();
+	
+	if(requestACK)
+	{
+		if(tx_PHY(len,to_node,true))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		tx_PHY(len,to_node,false);
 	}
 		
 }
@@ -283,7 +328,7 @@ bool WSN_RFM69::fetchPacket()
 		//Serial.println(char(packet_type));
 		if (packet_type==4)
 		{
-			pLen = len-1;
+			pLen = len;
 			pRSSI = rssi;
 			pSenderID = SENDERID;
 			return true;
@@ -443,7 +488,7 @@ void WSN_RFM69::send(uint16_t toAddress, const void* buffer, uint8_t bufferSize,
 		{
 			while ((millis()-now) < 5) {receiveDone();}
 		}
-		if((csma_count++)>100) break;
+		if((csma_count++)>16) break;
 	}//end of while !CSMA_flag
 
 //Modified CSMA End////////////////////
