@@ -31,7 +31,7 @@ By default simple mode is enabled.
 To enable networkMode: node.setNetworkMode(true);
 To enable simple mode: node.setNetworkMode(false);
 
-## networkMode
+# networkMode
 
 To enable networkMode: node.setNetworkMode(true);
 
@@ -63,6 +63,6 @@ node.message = "Hello World! Neighbour";
 
 node.sendToNeighbour(NeighbourNodeId);
 
-###Some Important Notes:
+### Some Important Notes:
 - 0 is the broadcast address. Do not assign 0 as node id for any node.
 - If there are any functions / processes in your code that take a long time to execute, add node.receiveDone() between the function / process. This ensures that packets are not lost due to such lengthy processes / functions. node.receiveDone() checks for arrival of new packet and sends it to packet buffer, so that it can be processed later in the main loop. 
