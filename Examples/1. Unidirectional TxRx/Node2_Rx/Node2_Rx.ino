@@ -40,7 +40,7 @@ void setup() {
   Serial.begin(9600);//Set baudrate to 9600 bps
   node.initialize(FREQUENCY, MYNODEID, NETWORKID);
   node.setHighPower(); // Always use this for RFM69HCW 
-  Serial.println("Node Started");
+  Serial.println(F("Node Started"));
 }
 
 void loop() {

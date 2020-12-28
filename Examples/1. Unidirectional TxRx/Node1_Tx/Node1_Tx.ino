@@ -37,8 +37,7 @@ WSN_RFM69 node;
 #define FREQUENCY     RF69_915MHZ //Required for intialization only
 #define USEACK        true       //Requet Acknowledgement or not
 
-String message = "Hello from Node 1"; 
-char sendbuffer[61] = "";        
+     
 long int now = 0;   //timer for periodically transmitting 
 
 void setup() {
@@ -46,7 +45,7 @@ void setup() {
   Serial.begin(9600);//Set baudrate to 9600 bps
   node.initialize(FREQUENCY, MYNODEID, NETWORKID);
   node.setHighPower(); // Always use this for RFM69HCW 
-  Serial.println("Node Started");
+  Serial.println(F("Node Started"));
   now = millis();
 }
 
@@ -54,22 +53,24 @@ void loop() {
 node.receiveDone();
 if( millis() - now > 5000 )
 {
-  for(int i = 0; i < message.length(); i++)
-  {
-    sendbuffer[i] = message[i];
-  }
-  Serial.println("Sending Message: "+message);
+  node.message = F("Hello from Node 1");
+  
+  Serial.println("Sending Message: "+node.message);
   if (USEACK)
       {
-        if (node.sendWithRetry(TONODEID, sendbuffer, message.length(),RETRY_TIMES,RETRY_INTERVAL))
+        if(node.sendToNeighbour(TONODEID,true))  
           Serial.println(F("ACK received!"));
         else
           Serial.println(F("no ACK received"));
       }
     else // don't use ACK
       {
-        node.send(TONODEID, sendbuffer, message.length(),USEACK);
+        node.sendToNeighbour(TONODEID,false);
       }
+      node.message=F("This is broadcast");
+      Serial.println("Sending Broadcast Message: "+node.message);
+      node.sendToAllNeighbours();
+      
     now = millis();
 
 }

@@ -66,30 +66,32 @@ if(node.pflag)
     Serial.println("RSSI: "+String(node.pRSSI));
   }
  }
+node.receiveDone();
+//Call node.receiveDone() as frequently as you wish. Ideally should be called in between processes taking a long time to complete.
+// receiveDone() receives any packets pending in RFM69's buffer and moves it to the 200-byte packet buffer. This prevents loss of packets due to long processing times of certain processes within your program.
 
 if( millis() - now > 5000 )
 {
-  for(int i = 0; i < message.length(); i++)
-  {
-    sendbuffer[i] = message[i];
-  }
-  Serial.println("Sending Message: "+message);
+  node.message = F("Hello from Node 2");
+  
+  Serial.println("Sending Message: "+node.message);
   if (USEACK)
       {
-        if (node.sendWithRetry(TONODEID, sendbuffer, message.length(),RETRY_TIMES,RETRY_INTERVAL))
+        if(node.sendToNeighbour(TONODEID,true))  
           Serial.println(F("ACK received!"));
         else
           Serial.println(F("no ACK received"));
       }
     else // don't use ACK
       {
-        node.send(TONODEID, sendbuffer, message.length(),USEACK);
+        node.sendToNeighbour(TONODEID,false);
       }
+      node.message=F("This is broadcast from Node 2");
+      Serial.println("Sending Broadcast Message: "+node.message);
+      node.sendToAllNeighbours();
+      
     now = millis();
 
 }
-
-
-
 
 }

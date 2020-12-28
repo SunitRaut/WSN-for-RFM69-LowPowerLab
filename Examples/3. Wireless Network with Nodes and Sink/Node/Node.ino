@@ -34,6 +34,8 @@ WSN_RFM69 node;
 #define MYNODEID      2           // My node ID
 #define FREQUENCY     RF69_915MHZ //Required for intialization only
 
+//int nodeID = #MYNODEID
+
 long now = 0;
 
 void setup() {
@@ -42,6 +44,7 @@ void setup() {
   Serial.println(F("Node Started"));
   node.initialize(FREQUENCY, MYNODEID, NETWORKID);
   node.setHighPower(); // Always use this for RFM69HCW 
+  node.setPowerLevel(0);
   node.setNetworkMode(true);
   node.setSink(false);
   now = millis();
@@ -52,7 +55,7 @@ void loop() {
 
 if( millis() - now > 5000 )
 {
-  node.message="Hello from Node "+MYNODEID;
+  node.message="Hello from Node "+String(MYNODEID);
   Serial.println("Sending to sink: "+node.message);
   node.sendToSink();
   now = millis();
