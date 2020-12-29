@@ -96,4 +96,4 @@ In order to use this library, you need to frst install the following libraries:
 - LowPowerLab RFM69 (https://github.com/LowPowerLab/RFM69)
 - LowPowerLab SPIFlash (https://github.com/LowPowerLab/SPIFlash)
 
-You can download these libraries throug Arduino Library Manager.
+You can download these libraries through Arduino Library Manager.
