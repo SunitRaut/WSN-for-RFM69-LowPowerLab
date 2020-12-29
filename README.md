@@ -17,37 +17,60 @@ This is a library for developing Wireless Sensor Network using RFM69 LowPowerLab
 Create object of WSN_RFM69 Class.
 WSN_RFM69 node; // object node of class WSN_RFM69
 
-The library can be run in two modes: simple and networkMode
+The library can be run in two modes: simple and networkMode. 
 By default simple mode is enabled.
 
-- In simple mode, you can use this library exactly like LowPowerLab's RFM69 plus 200-byte packet buffer minus networking ability.
+- In simple mode, you can use this library exactly like LowPowerLab's RFM69 plus 200-byte packet buffer minus networking ability. 
 
 - In simple mode, you can send max. 61 byte message. (exactly like in LowPowerLab RFM library).
+
+- Please Check the examples '1. Unidirectional TxRx' and '2. Bidirectional TxRx' to know more about usage of simple mode.
 
 - In networkMode, you can form a wireless network of nodes automatically and send messages towards sink node (nearest sink node, in case of multiple sinks). 
 
 - In networkMode, you can send max. 60 byte message. (due to 1-byte network header).
 
+- Please Check the example '3. Wireless Network with Nodes and Sink' to know more about usage of networkMode.
+
 To enable networkMode: node.setNetworkMode(true);
 To enable simple mode: node.setNetworkMode(false);
+
+# Simple Mode
+
+To enable simple mode: node.setNetworkMode(false);  //By default, even if you don't declare this statement, the node will operate in simple mode only.
+
+- To send to all Neighbouring Nodes:
+
+node.message = "Hello World! Neighbours";
+
+node.sendToAllNeighbours();
+
+- To send to a particular Neighbouring Node:
+
+node.message = "Hello World! Neighbour";
+
+node.sendToNeighbour(NeighbourNodeId);
+
+Note: Neighbour refers to a node which is within the range of transmitting node. 
+
 
 # networkMode
 
 To enable networkMode: node.setNetworkMode(true);
 
-In Setup():
+- In Setup():
 
 node.setNetworkMode(true);
 
 Sink Node: node.setSink(true) | Node: node.setSink(false)
 
-Anywhere in your code:
+- How to send messages in networkMode:
 
-First assign to message
+-- First assign to message
 
 node.message = "Hello World!";      //max. 60 byte message
 
-Then send towards the nearest sink
+-- Then send towards the nearest sink
 
 node.sendToSink();
 
