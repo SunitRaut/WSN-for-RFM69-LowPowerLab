@@ -89,3 +89,10 @@ node.sendToNeighbour(NeighbourNodeId);
 ### Some Important Notes:
 - 0 is the broadcast address. Do not assign 0 as node id for any node.
 - If there are any functions / processes in your code that take a long time to execute, add node.receiveDone() between the function / process. This ensures that packets are not lost due to such lengthy processes / functions. node.receiveDone() checks for arrival of new packet and sends it to packet buffer, so that it can be processed later in the main loop. 
+
+### Dependencies:
+
+In order to use this library, you need to frst install the following libraries: 
+- LowPowerLab RFM69 (https://github.com/LowPowerLab/RFM69)
+- LowPowerLab SPIFlash (https://github.com/LowPowerLab/SPIFlash)
+You can download these librarie throug Arduino Library Manager.
