@@ -2,7 +2,7 @@
   "name": "WSN_RFM69",
   "version": "1.0.0",
   "keywords": "rf, radio, wireless, spi, lowpowerlab, wsn, network",
-  "description": "RFM69 library for RFM69W, RFM69HW, RFM69CW, RFM69HCW (semtech SX1231, SX1231H)",
+  "description": "This is a library for developing Wireless Sensor Network using RFM69 LowPowerLab Library.",
   "repository":
   {
     "type": "git",
