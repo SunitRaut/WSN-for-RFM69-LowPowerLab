@@ -49,7 +49,7 @@ bool WSN_RFM69::networkMode;
 
 WSN_RFM69::WSN_RFM69()	//Constructor
 {
-    	randomSeed(analogRead(A1));
+    	randomSeed(analogRead(ANALOG_RANDOM_PIN));
     	backoff = random(50);	
 	networkMode = false; 					//false by default
 }
@@ -114,7 +114,7 @@ void WSN_RFM69::calculate_hops()
 
 int WSN_RFM69::route()
 {
-	int nodeList[neighbourCount]={};byte listCount=0;         //temporary variables for processing
+	int nodeList[neighbourCount];byte listCount=0;         //temporary variables for processing
   	for(byte ik=0;ik<neighbourCount;ik++)         //loop through complete neighbour list
   	{
     		if(hops_count[ik]<hops_from_sink)          //find a neighbour which is less hops away than itself from sink
@@ -505,7 +505,7 @@ bool WSN_RFM69::sendWithRetry(uint16_t toAddress, const void* buffer, uint8_t bu
 		//Serial.println("Attempt = "+String(i));
 		if(i>0)
 		{
-			randomSeed(analogRead(A1));
+			randomSeed(analogRead(ANALOG_RANDOM_PIN));
 			backoff =  random(50);
 			uint32_t now=millis();
 			while ((millis()-now) < backoff) {receiveDone();}
