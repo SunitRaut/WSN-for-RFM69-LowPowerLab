@@ -32,6 +32,7 @@
 #define RETRY_TIMES 	1	// How many times to retry a transmission?
 #define RETRY_INTERVAL	50	// At what intervals to retry?
 #define NEIGHBOUR_RETRY_LIMIT 5	// How many neighbours to try in case of failure
+#define ANALOG_RANDOM_PIN   A0  //Choose any analog pin to generate true random numbers.
 
 class WSN_RFM69 : public RFM69
 {
