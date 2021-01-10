@@ -66,6 +66,7 @@ void sendToAllNeighbours();
 bool sendToNeighbour(uint16_t to_node, bool requestACK);
 
 void sendToSink();
+void discoveryREQ();
 
 bool tx_PHY(byte L1_length,int toNode,bool requestACK);   
 
@@ -82,7 +83,7 @@ static void isr_modif();		//not in use (undefined)
 void interruptHandler();
 void interruptHook(uint8_t CTLbyte);
 
-void discoveryREQ();
+
 void discoveryRESP();
 
 void calculate_hops();
