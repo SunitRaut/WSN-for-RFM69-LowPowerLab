@@ -138,6 +138,7 @@ int WSN_RFM69::route()
 
 void WSN_RFM69::sendToSink()
 {
+	if(sink) return;
 	//form packet
 	sendbuffer[0]=3;
 	for(byte i=1;i<=message.length();i++)
