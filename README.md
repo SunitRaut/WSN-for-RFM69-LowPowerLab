@@ -15,8 +15,9 @@ This is a library for developing Wireless Sensor Network using RFM69 LowPowerLab
 # How to use Library
 
 Create object of WSN_RFM69 Class.
+```
 WSN_RFM69 node; // object node of class WSN_RFM69
-
+```
 The library can be run in two modes: simple and networkMode. 
 By default simple mode is enabled.
 
@@ -32,25 +33,25 @@ By default simple mode is enabled.
 
 - Please Check the example '3. Wireless Network with Nodes and Sink' to know more about usage of networkMode.
 
-To enable networkMode: node.setNetworkMode(true);
-To enable simple mode: node.setNetworkMode(false);
+To enable networkMode: ```node.setNetworkMode(true);```
+To enable simple mode: ```node.setNetworkMode(false);```
 
 # Simple Mode
 
 To enable simple mode: node.setNetworkMode(false);  //By default, even if you don't declare this statement, the node will operate in simple mode only.
 
 - To send to all Neighbouring Nodes:
-
+```
 node.message = "Hello World! Neighbours";
 
 node.sendToAllNeighbours();
-
+```
 - To send to a particular Neighbouring Node:
-
+```
 node.message = "Hello World! Neighbour";
 
 node.sendToNeighbour(NeighbourNodeId);
-
+```
 Note: Neighbour refers to a node which is within the range of transmitting node. 
 
 
@@ -59,33 +60,33 @@ Note: Neighbour refers to a node which is within the range of transmitting node.
 To enable networkMode: node.setNetworkMode(true);
 
 - In Setup():
-
+```
 node.setNetworkMode(true);
-
+```
 Sink Node: node.setSink(true) | Node: node.setSink(false)
 
 - How to send messages in networkMode:
 
 -- First assign to message
-
+```
 node.message = "Hello World!";      //max. 60 byte message
-
+```
 -- Then send towards the nearest sink
-
+```
 node.sendToSink();
-
+```
 - To send to all Neighbouring Nodes:
-
+```
 node.message = "Hello World! Neighbours";
 
 node.sendToAllNeighbours();
-
+```
 - To send to a particular Neighbouring Node:
-
+```
 node.message = "Hello World! Neighbour";
 
 node.sendToNeighbour(NeighbourNodeId);
-
+```
 ### Some Important Notes:
 - 0 is the broadcast address. Do not assign 0 as node id for any node.
 - If there are any functions / processes in your code that take a long time to execute, add node.receiveDone() between the function / process. This ensures that packets are not lost due to such lengthy processes / functions. node.receiveDone() checks for arrival of new packet and sends it to packet buffer, so that it can be processed later in the main loop. 
