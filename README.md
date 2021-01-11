@@ -1,4 +1,7 @@
 # WSN for RFM69 LowPowerLab Library
+[![GitHub release](https://img.shields.io/github/release/SunitRaut/WSN-for-RFM69-LowPowerLab.svg)](https://github.com/SunitRaut/WSN-for-RFM69-LowPowerLab)
+[![license](https://img.shields.io/github/license/SunitRaut/WSN-for-RFM69-LowPowerLab.svg)](https://github.com/SunitRaut/WSN-for-RFM69-LowPowerLab/blob/master/LICENSE.txt)
+
 This is a library for developing Wireless Sensor Network using RFM69 LowPowerLab Library. 
 
 ## Features:
