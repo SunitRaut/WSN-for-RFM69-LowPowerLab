@@ -1,6 +1,6 @@
 {
   "name": "WSN_RFM69",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": "rf, radio, wireless, spi, lowpowerlab, wsn, network",
   "description": "This is a library for developing Wireless Sensor Network using RFM69 LowPowerLab Library.",
   "repository":
