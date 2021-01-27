@@ -9,7 +9,7 @@
     "url": "https://github.com/SunitRaut/WSN-for-RFM69-LowPowerLab"
   },
   "frameworks": "arduino",
-  "platforms": "atmelavr",
+  "platforms": "atmelavr,espressif8266, espressif32",
   "authors": 
   [
         { 
