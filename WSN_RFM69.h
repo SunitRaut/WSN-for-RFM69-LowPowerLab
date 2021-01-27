@@ -29,10 +29,11 @@
 
 #define PSIZE 200		//Size of packet buffer in bytes. Set this according to your hardware RAM limit and your estimated RAM usage
 // 200 bytes is optimal for Arduino Nano, Uno, etc with 2kB RAM. For ESP8266 or other controllers with more RAM, ou can increase the packet buffer size. 
-#define RETRY_TIMES 	1	// How many times to retry a transmission?
-#define RETRY_INTERVAL	50	// At what intervals to retry?
-#define NEIGHBOUR_RETRY_LIMIT 5	// How many neighbours to try in case of failure
-#define ANALOG_RANDOM_PIN   A0  //Choose any analog pin to generate true random numbers.
+#define RETRY_TIMES 	        1	// How many times to retry a transmission?
+#define RETRY_INTERVAL	        50	// At what intervals to retry?
+#define NEIGHBOUR_RETRY_LIMIT   5	// How many neighbours to try in case of failure
+#define ANALOG_RANDOM_PIN       A0  // Choose any analog pin to generate true random numbers.
+#define MAX_BACKOFF             50  // Choose the maximum backoff period for nodes in network (in milliseconds)
 
 class WSN_RFM69 : public RFM69
 {
