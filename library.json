@@ -10,6 +10,14 @@
   },
   "frameworks": "arduino",
   "platforms": "atmelavr",
+  "authors": 
+  [
+        { 
+            "name": "Sunit Raut",
+            "url": "https://github.com/SunitRaut"
+        }
+  ],
+  
   "dependencies":
   [
     {
