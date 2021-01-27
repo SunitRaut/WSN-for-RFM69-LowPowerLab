@@ -50,7 +50,7 @@ bool WSN_RFM69::networkMode;
 WSN_RFM69::WSN_RFM69()	//Constructor
 {
     	randomSeed(analogRead(ANALOG_RANDOM_PIN));
-    	backoff = random(50);	
+    	backoff = random(MAX_BACKOFF);	
 	networkMode = false; 					//false by default
 }
 
@@ -507,7 +507,7 @@ bool WSN_RFM69::sendWithRetry(uint16_t toAddress, const void* buffer, uint8_t bu
 		if(i>0)
 		{
 			randomSeed(analogRead(ANALOG_RANDOM_PIN));
-			backoff =  random(50);
+			backoff =  random(MAX_BACKOFF);
 			uint32_t now=millis();
 			while ((millis()-now) < backoff) {receiveDone();}
 		}
