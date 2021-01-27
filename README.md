@@ -17,6 +17,8 @@ This is a library for developing Wireless Sensor Network using RFM69 LowPowerLab
 
 # How to use Library
 
+You can install this library through Arduino Library Manager. Go to Tools > Manage Libraries > Search for "WSN RFM69" in search box in Arduino Library Manager. 
+
 Create object of WSN_RFM69 Class.
 ```
 WSN_RFM69 node; // object node of class WSN_RFM69
