@@ -103,3 +103,4 @@ In order to use this library, you need to frst install the following libraries:
 - LowPowerLab SPIFlash (https://github.com/LowPowerLab/SPIFlash)
 
 You can download these libraries through Arduino Library Manager.
+Here is an [instructable for building WSN using Arduino & RFM69](https://www.instructables.com/Wireless-Sensor-Network-Using-Arduino-and-RFM69/)
